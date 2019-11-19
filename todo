@@ -1,0 +1,28 @@
+1. Luetaan palat
+	a. Get next linella
+	b. linked listaan
+2. Tarkistaa palat
+	a. 4x4 pala
+	b. 4 blokkia per pala
+	c. blokit koskettaa toisia blokkeja
+	d. paloissa vain pisteitä ja risuaitoja
+3. Säilöä palat jossain muodossa
+4. Asetellaan palat neliöön
+5. Tulostetaan palat
+
+Testi funktiot:
+	1. Tulosta kaikki palat linked listasta
+
+Funktiot step 1:
+	1. Luodaan temp 2d char array
+	2. Lue get next linella pala temp 2d char arrayhyn
+	3. Validoidaan pala
+	4. trimmataan pala
+	5. Luo uusi pala lista elementti
+	6. kopioi trimmattu pala lista elementtiin
+
+
+Tehtävät:
+	- Funktioista prototyypit
+	- Headerit
+	- Prototyypit header filuun

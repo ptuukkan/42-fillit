@@ -27,3 +27,8 @@ Tehtävät:
 	- Headerit
 	- Prototyypit header filuun
 
+Readfile:
+	- Luo apufunktiot
+		- read_piece()
+		- validate_piece()
+		- add_to_list()

@@ -26,4 +26,9 @@ Tehtävät:
 	- Funktioista prototyypit
 	- Headerit
 	- Prototyypit header filuun
-	- list struct typedef
+
+Readfile:
+	- Luo apufunktiot
+		- read_piece()
+		- validate_piece()
+		- add_to_list()

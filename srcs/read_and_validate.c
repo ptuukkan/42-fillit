@@ -10,4 +10,4 @@ trim piece()
 Lue ja validoi palat()
 
 
-
+int	read_

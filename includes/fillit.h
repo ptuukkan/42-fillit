@@ -17,4 +17,7 @@ typedef struct			s_tetlist
 	struct s_tetlist	*next;
 }						t_tetlist;
 
+int						print_error();
+int						print_usage(void);
+
 #endif

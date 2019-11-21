@@ -23,5 +23,6 @@ int						print_usage(void);
 void					exit_error(void);
 void					validate_tetromino(char **array);
 int						read_file(int fd, t_tetlist **tetrominos);
+void					append_tetromino(char **array, t_tetlist **tetrominos);
 
 #endif

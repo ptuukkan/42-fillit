@@ -13,11 +13,11 @@ int		count_neighbours(char **array, int x,int y)
 	result = 0;
 	if (y > 0 && array[y - 1][x] == '#')
 		result++;
-	if (y < 4 && array[y + 1][x] == '#')
+	if (y < 3 && array[y + 1][x] == '#')
 		result++;
 	if (x > 0 && array[y][x - 1] == '#')
 		result++;
-	if (x < 4 && array[y][x + 1] == '#')
+	if (x < 3 && array[y][x + 1] == '#')
 		result++;
 	return (result);
 }
@@ -37,19 +37,21 @@ void	validate_tetromino(char **array)
 		x = 0;
 		while (array[y][x] != '\0')
 		{
-			if (array[y][x] != '.' || array[y][x] != '#')
-				exit_error();
+			if (array[y][x] != '.' && array[y][x] != '#')
+				exit_error("Not valid character");
 			if (array[y][x] == '#')
 			{
 				t++;
 				tet += count_neighbours(array, x, y);
 			}
+			x++;
 		}
 		if (x != 4)
-			exit_error();
+			exit_error("Too many characters in line");
+	y++;
 	}
 	if (t != 4 || y != 4 || tet < 6)
-		exit_error();
+		exit_error("Too many lines, too many blocks, too few buddies");
 }
 
 /*
@@ -62,7 +64,7 @@ char	**init_array(void)
 	char	**array;
 
 	if (!(array = (char **)ft_memalloc(sizeof(char *) * 5)))
-		exit_error();
+		exit_error("Array allocation failed!");
 	array[0] = NULL;
 	array[1] = NULL;
 	array[2] = NULL;
@@ -84,16 +86,17 @@ char	**read_tetromino(int fd, char **array)
 	int		ret;
 
 	i = 0;
-	while ((ret = get_next_line(fd, &line)) && i < 5)
+	while (i < 5 && (ret = get_next_line(fd, &line)))
 	{
 		if (i == 4)
 		{
 			if (*line != '\0')
-				exit_error();
+				exit_error("Line not null!");
 			if (line)
 				ft_strdel(&line);
 		}
-		array[i] = line;
+		else
+			array[i] = line;
 		i++;
 	}
 	if (i != (4 + ret))

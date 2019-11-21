@@ -3,6 +3,7 @@
 
 # include "libft.h"
 # include <fcntl.h>
+# include <stdio.h>
 
 typedef struct			s_poslist
 {
@@ -18,9 +19,9 @@ typedef struct			s_tetlist
 	struct s_tetlist	*next;
 }						t_tetlist;
 
-int						print_error(void);
+int						print_error(char *str);
 int						print_usage(void);
-void					exit_error(void);
+void					exit_error(char *str);
 void					validate_tetromino(char **array);
 int						read_file(int fd, t_tetlist **tetrominos);
 void					append_tetromino(char **array, t_tetlist **tetrominos);

@@ -5,7 +5,7 @@ static t_tetlist	*create_tetromino(char **array)
 	t_tetlist	*new;
 
 	if (!(new = (t_tetlist *)ft_memalloc(sizeof(t_tetlist))))
-		exit_error();
+		exit_error("List allocation failed");
 	new->tetromino = array;
 	new->positions = NULL;
 	new->next = NULL;
@@ -16,7 +16,6 @@ static t_tetlist	*create_tetromino(char **array)
 void				append_tetromino(char **array, t_tetlist **tetrominos)
 {
 	t_tetlist	*temp;
-	t_tetlist	*new;
 
 	if (*tetrominos == NULL)
 	{

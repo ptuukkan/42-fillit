@@ -2,6 +2,7 @@
 # define FILLIT_H
 
 # include "libft.h"
+# include <fcntl.h>
 
 typedef struct			s_poslist
 {
@@ -20,6 +21,7 @@ typedef struct			s_tetlist
 int						print_error(void);
 int						print_usage(void);
 void					exit_error(void);
-void					validate_tetromino(***array);
+void					validate_tetromino(char **array);
+int						read_file(int fd, t_tetlist **tetrominos);
 
 #endif

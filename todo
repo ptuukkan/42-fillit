@@ -23,9 +23,7 @@ Funktiot step 1:
 
 
 Tehtävät:
-	- Funktioista prototyypit
-	- Headerit
-	- Prototyypit header filuun
+	- Funktio, joka tarkistaa että tetrominon blokit on valideja
 
 Readfile:
 	- Luo apufunktiot

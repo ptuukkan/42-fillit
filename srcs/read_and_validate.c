@@ -5,7 +5,7 @@
 ** has four lines and contains only 4 blocks.
 */
 
-void	validate_tetromino(***array)
+void	validate_tetromino(char **array)
 {
 	int	y;
 	int	x;
@@ -13,15 +13,17 @@ void	validate_tetromino(***array)
 
 	y = 0;
 	t = 0;
-	while ((*array)[y] != NULL)
+	while (array[y] != NULL)
 	{
 		x = 0;
-		while ((*array)[y][x] != '\0')
+		while (array[y][x] != '\0')
 		{
-			if ((*array)[y][x] != '.' || (*array)[y][x] != '#')
+			if (array[y][x] != '.' || array[y][x] != '#')
 				exit_error();
-			if ((*array)[y][x] != '#')
+			if (array[y][x] == '#')
+			{
 				t++;
+			}
 		}
 		if (x != 4)
 			exit_error();
@@ -69,7 +71,7 @@ char	**read_tetromino(int fd, char **array)
 			if (*line != '\0')
 				exit_error();
 			if (line)
-				ft_strdel(&line)
+				ft_strdel(&line);
 		}
 		array[i] = line;
 		i++;
@@ -79,13 +81,17 @@ char	**read_tetromino(int fd, char **array)
 	return (array);
 }
 
-int		read_file(int fd)
+int		read_file(int fd, t_tetlist **tetrominos)
 {
 	char	**array;
+	int		tet_count;
 
+	tet_count = 0;
 	array = init_array();
 	while ((array = read_tetromino(fd, array)) != NULL)
 	{
-		validate_tetromino(&array);
+		validate_tetromino(array);
+		tet_count++;
 	}
+	return (tet_count);
 }

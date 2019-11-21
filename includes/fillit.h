@@ -19,6 +19,7 @@ typedef struct			s_tetlist
 
 int						print_error(void);
 int						print_usage(void);
-void					exit_error(void)
+void					exit_error(void);
+void					validate_tetromino(***array);
 
 #endif

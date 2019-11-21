@@ -77,7 +77,11 @@ char	**read_tetromino(int fd, char **array)
 		i++;
 	}
 	if (i != (4 + ret))
+	{
+		while (i--)
+			ft_strdel(&array[i]);
 		return (NULL);
+	}
 	return (array);
 }
 

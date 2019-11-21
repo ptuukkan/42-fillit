@@ -100,6 +100,7 @@ char	**read_tetromino(int fd, char **array)
 	{
 		while (i--)
 			ft_strdel(&array[i]);
+		free(array);
 		return (NULL);
 	}
 	return (array);
@@ -115,6 +116,8 @@ int		read_file(int fd, t_tetlist **tetrominos)
 	while ((array = read_tetromino(fd, array)) != NULL)
 	{
 		validate_tetromino(array);
+		append_tetromino(array, tetrominos);
+		array = init_array();
 		tet_count++;
 	}
 	return (tet_count);

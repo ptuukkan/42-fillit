@@ -5,14 +5,33 @@
 ** has four lines and contains only 4 blocks.
 */
 
+
+int		count_neighbours(char **array, int x,int y)
+{
+	int result;
+
+	result = 0;
+	if (y > 0 && array[y - 1][x] == '#')
+		result++;
+	if (y < 4 && array[y + 1][x] == '#')
+		result++;
+	if (x > 0 && array[y][x - 1] == '#')
+		result++;
+	if (x < 4 && array[y][x + 1] == '#')
+		result++;
+	return (result);
+}
+
 void	validate_tetromino(char **array)
 {
 	int	y;
 	int	x;
 	int	t;
+	int tet;
 
 	y = 0;
 	t = 0;
+	tet = 0;
 	while (array[y] != NULL)
 	{
 		x = 0;
@@ -23,12 +42,13 @@ void	validate_tetromino(char **array)
 			if (array[y][x] == '#')
 			{
 				t++;
+				tet += count_neighbours(array, x, y);
 			}
 		}
 		if (x != 4)
 			exit_error();
 	}
-	if (t != 4 || y != 4)
+	if (t != 4 || y != 4 || tet < 6)
 		exit_error();
 }
 

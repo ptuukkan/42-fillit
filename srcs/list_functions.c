@@ -13,16 +13,16 @@ static t_tetlist	*create_tetromino(char **array)
 }
 
 
-void				append_tetromino(char **array, t_tetlist **tetrominos)
+void				append_tetromino(char **array, t_tetlist **tetrominoes)
 {
 	t_tetlist	*temp;
 
-	if (*tetrominos == NULL)
+	if (*tetrominoes == NULL)
 	{
-		*tetrominos = create_tetromino(array);
+		*tetrominoes = create_tetromino(array);
 		return ;
 	}
-	temp = *tetrominos;
+	temp = *tetrominoes;
 	while (temp->next != NULL)
 		temp = temp->next;
 	temp->next = create_tetromino(array);

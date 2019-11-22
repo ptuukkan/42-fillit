@@ -2,16 +2,16 @@
 
 #include "fillit.h"
 
-void	print_tetrominos(t_tetlist *tetrominos)
+void	print_tetrominos(t_tetlist *tetrominoes)
 {
-	while (tetrominos)
+	while (tetrominoes)
 	{
-		while (*tetrominos->tetromino)
+		while (*tetrominoes->tetromino)
 		{
-			ft_putendl(*tetrominos->tetromino);
-			tetrominos->tetromino++;
+			ft_putendl(*tetrominoes->tetromino);
+			tetrominoes->tetromino++;
 		}
-		tetrominos = tetrominos->next;
+		tetrominoes = tetrominoes->next;
 	}
 }
 

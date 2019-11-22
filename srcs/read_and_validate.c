@@ -1,10 +1,9 @@
 #include "fillit.h"
 
 /*
-** Checks that each line is 4 chars long, contains only . and #,
-** has four lines and contains only 4 blocks.
+** Counts neighbor blocks for each block.
+** Valid tetromino contains 6 or 8 neighbors.
 */
-
 
 int		count_neighbours(char **array, int x,int y)
 {
@@ -21,6 +20,11 @@ int		count_neighbours(char **array, int x,int y)
 		result++;
 	return (result);
 }
+
+/*
+** Checks that each line is 4 chars long, contains only . and #,
+** has four lines and contains only 4 blocks.
+*/
 
 void	validate_tetromino(char **array)
 {
@@ -65,21 +69,16 @@ char	**init_array(void)
 
 	if (!(array = (char **)ft_memalloc(sizeof(char *) * 5)))
 		exit_error("Array allocation failed!");
-	array[0] = NULL;
-	array[1] = NULL;
-	array[2] = NULL;
-	array[3] = NULL;
-	array[4] = NULL;
 	return (array);
 }
 
 /*
 ** Reads until 5 lines or eof. Makes sure that fifth line is '\0'.
-** Returns tetromino in 2d array if successfully read four lines.
-** Returns null if reading stopped before four lines have been read.
+** Copies each line to 2d char array passed as parameter.
+** Returns number of lines read.
 */
 
-char	**read_tetromino(int fd, char **array)
+int		read_tetromino(int fd, char **array)
 {
 	char	*line;
 	int		i;
@@ -104,24 +103,40 @@ char	**read_tetromino(int fd, char **array)
 		while (i--)
 			ft_strdel(&array[i]);
 		free(array);
-		return (NULL);
 	}
-	return (array);
+	return (i);
 }
 
-int		read_file(int fd, t_tetlist **tetrominos)
+/*
+** Loops the read_tetromino function until lines read is 0 == EOF.
+** Initializes fresh 2d array for each tetromino.
+** Counts tetrominoes and total number of lines read.
+** Tetromino count must be >=1  && <= 26.
+** Number of lines read must be tetromino count * 5 - 1.
+*/
+
+int		read_file(int fd, t_tetlist **tetrominoes)
 {
 	char	**array;
 	int		tet_count;
+	int		lines_read;
+	int		ret;
 
+	lines_read = 0;
 	tet_count = 0;
+	ret = 0;
 	array = init_array();
-	while ((array = read_tetromino(fd, array)) != NULL)
+	while ((ret = read_tetromino(fd, array)) > 0)
 	{
 		validate_tetromino(array);
-		append_tetromino(array, tetrominos);
+		append_tetromino(array, tetrominoes);
 		array = init_array();
 		tet_count++;
+		lines_read += ret;
 	}
+	if (tet_count < 1 || tet_count > 26)
+		exit_error("too many or zero tetrominoes");
+	if (lines_read != (tet_count * 5 - 1))
+		exit_error("incorrect number of lines read");
 	return (tet_count);
 }

@@ -13,7 +13,7 @@
 NAME = fillit
 LIB = libft.a
 SRCDIR = srcs
-SRCS = main.c list_functions.c print_error.c print_usage.c read_and_validate.c
+SRCS = main.c list_functions.c print_error.c print_usage.c read_and_validate.c convert_tetromino.c
 
 OBJDIR = objects
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)

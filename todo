@@ -23,9 +23,7 @@ Funktiot step 1:
 
 
 Tehtävät:
-	- Funktio, joka tarkistaa että tetrominon blokit on valideja
+
 
 Readfile:
-	- Luo apufunktiot
-		- validate_piece()
-		- add_to_list()
+

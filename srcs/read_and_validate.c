@@ -1,5 +1,7 @@
 #include "fillit.h"
 
+
+
 /*
 ** Counts neighbor blocks for each block.
 ** Valid tetromino contains 6 or 8 neighbors.
@@ -72,6 +74,16 @@ char	**init_array(void)
 	return (array);
 }
 
+void	del_array(char **array)
+{
+	while (*array)
+	{
+		ft_strdel(array);
+		array++;
+	}
+	array = NULL;
+}
+
 /*
 ** Reads until 5 lines or eof. Makes sure that fifth line is '\0'.
 ** Copies each line to 2d char array passed as parameter.
@@ -130,6 +142,7 @@ int		read_file(int fd, t_tetlist **tetrominoes)
 	{
 		validate_tetromino(array);
 		append_tetromino(array, tetrominoes);
+		del_array(array);
 		array = init_array();
 		tet_count++;
 		lines_read += ret;

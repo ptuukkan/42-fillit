@@ -6,11 +6,10 @@ void	print_tetrominos(t_tetlist *tetrominoes)
 {
 	while (tetrominoes)
 	{
-		while (*tetrominoes->tetromino)
-		{
-			ft_putendl(*tetrominoes->tetromino);
-			tetrominoes->tetromino++;
-		}
+		printf("A_Y: %d\nA_X: %d\n", tetrominoes->tetromino[0][0], tetrominoes->tetromino[0][1]);
+		printf("B_Y: %d\nB_X: %d\n", tetrominoes->tetromino[1][0], tetrominoes->tetromino[1][1]);
+		printf("C_Y: %d\nC_X: %d\n", tetrominoes->tetromino[2][0], tetrominoes->tetromino[2][1]);
+		printf("D_Y: %d\nD_X: %d\n\n", tetrominoes->tetromino[3][0], tetrominoes->tetromino[3][1]);
 		tetrominoes = tetrominoes->next;
 	}
 }

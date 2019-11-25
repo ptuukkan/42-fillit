@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-int		max_width(int **tetromino)
+int		max_width(int tetromino[4][2])
 {
 	int	m;
 	int	i;
@@ -28,7 +28,7 @@ int		max_width(int **tetromino)
 	return (m);
 }
 
-int		max_length(int **tetromino)
+int		max_length(int tetromino[4][2])
 {
 	int	m;
 	int	i;
@@ -44,7 +44,7 @@ int		max_length(int **tetromino)
 	return (m);
 }
 
-void	fill_positions(int **tetromino, t_poslist *positions, int sqr_size)
+void	fill_positions(int tetromino[4][2], t_poslist *positions, int sqr_size)
 {
 	int	tetcopy[4][2];
 	int	lx;

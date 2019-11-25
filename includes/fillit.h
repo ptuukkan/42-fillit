@@ -26,6 +26,7 @@ void					validate_tetromino(char **array);
 int						read_file(int fd, t_tetlist **tetrominoes);
 void					append_tetromino(char **array, t_tetlist **tetrominoes);
 void					convert_tetromino(char **array, t_tetlist *tetrominoes);
-void					append_position(int **tetromino, t_poslist **positions);
+void					append_position(int tetromino[4][2], t_poslist **positions);
+void					calculate_positions(t_tetlist *tetrominoes, int sqr_size);
 
 #endif

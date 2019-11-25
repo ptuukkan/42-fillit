@@ -27,7 +27,7 @@ void				append_tetromino(char **array, t_tetlist **tetrominoes)
 	temp->next = create_tetromino(array);
 }
 
-static t_poslist	*create_position(int **tetromino)
+static t_poslist	*create_position(int tetromino[4][2])
 {
 	t_poslist	*new;
 
@@ -46,7 +46,7 @@ static t_poslist	*create_position(int **tetromino)
 	return (new);
 }
 
-void				append_position(int **tetromino, t_poslist **positions)
+void				append_position(int tetromino[4][2], t_poslist **positions)
 {
 	t_poslist		*temp;
 

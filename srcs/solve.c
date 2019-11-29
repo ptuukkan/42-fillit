@@ -7,6 +7,7 @@
 */
 
 
+
 int		solve(t_tetlist *tetromino, int sqr_size)
 {
 	char	map[sqr_size][sqr_size];
@@ -16,6 +17,8 @@ int		solve(t_tetlist *tetromino, int sqr_size)
 	
 	// Add piece to to map
 	
+	tetromino = tetromino->next;
+	solve(tetromino->next, sqr_size);
 	// Mark position as used to all other pieces
 
 }

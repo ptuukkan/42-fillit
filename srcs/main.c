@@ -45,6 +45,7 @@ int	main(int argc, char **argv)
 	t_tetlist	*tetrominoes;
 	int			sqr_size;
 	int			tet_count;
+	t_uplist	*used_positions;
 
 	if (argc != 2)
 		return (print_usage());
@@ -55,6 +56,14 @@ int	main(int argc, char **argv)
 		return (print_error("Read file failed!"));
 	sqr_size = calc_min_sqrsize(tet_count);
 	calculate_positions(tetrominoes, sqr_size);
+	used_positions = NULL;
+	while (solve(tetrominoes, &used_positions, sqr_size) == 0)
+	{
+		sqr_size++;
+		
+		calculate_positions(tetrominoes, sqr_size);
+		// poista used position lista
+	}
 	print_tetrominoes(tetrominoes);
 	return (0);
 }

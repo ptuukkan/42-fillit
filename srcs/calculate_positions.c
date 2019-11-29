@@ -83,6 +83,33 @@ void	fill_positions(int tetromino[4][2], t_poslist **positions, int sqr_size)
 //	}
 }
 
+void	calculate_new_positions(t_tetlist *tetrominoes, int sqr_size)
+{
+	int			row;
+	t_poslist	*temp;
+
+	row = 0;
+	while (tetrominoes)
+	{
+		while (tetrominoes->positions)
+		{
+			while (tetrominoes->positions->next && tetrominoes->positions->next->position[0][0] == row)
+				tetrominoes->positions = tetrominoes->positions->next;
+			temp = tetrominoes->positions->next;
+			tetrominoes->positions->next = create_position();
+			tetrominoes->positions->next->next = temp;
+			tetrominoes->positions = tetrominoes->positions->next->next;
+			row++;
+		}
+		uudelle riville kaikki elementit
+	}
+}
+
+0.0 -> 0.1 -> 0.2 -> 0.3 -> 0.4 ->
+1.0 -> 1.1 -> 1.2 -> 1.3 -> 1.4 -> 
+2.0 -> 2.1 -> 2.2 -> 2.3 -> 2.4 -> NULL
+
+
 void	calculate_positions(t_tetlist *tetrominoes, int sqr_size)
 {
 	t_tetlist	*temp;
@@ -94,3 +121,7 @@ void	calculate_positions(t_tetlist *tetrominoes, int sqr_size)
 		temp = temp->next;
 	}
 }
+
+
+Kelataan positiolistaa niin kauan kunnes positions->next->position[0][0] > nykyinen rivi
+	- yks positio väliin, vaihda riviä

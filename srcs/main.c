@@ -120,19 +120,15 @@ int	main(int argc, char **argv)
 	if (!(tet_count = read_file(fd, &tetrominoes)))
 		return (print_error("Read file failed!"));
 	sqr_size = calc_min_sqrsize(tet_count, tetrominoes);
-	printf("%d\n", sqr_size);
 	calculate_positions(tetrominoes, sqr_size);
-//print_positions(tetrominoes);
 	used_positions = NULL;
 	while (solve(tetrominoes, &used_positions, sqr_size) == 0)
 	{
 		sqr_size++;
-		printf("%d\n", sqr_size);
 		calculate_new_positions(tetrominoes, sqr_size);
-		printf("\nNEW POSITIONS\n");
-		//print_positions(tetrominoes);
 		remove_uplist(&used_positions);
 	}
+	while(1);
 	print_tetrominoes(tetrominoes, sqr_size);
 	return (0);
 }

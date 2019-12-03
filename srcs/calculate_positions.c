@@ -46,41 +46,72 @@ int		max_length(int tetromino[4][2])
 
 void	fill_positions(int tetromino[4][2], t_poslist **positions, int sqr_size)
 {
-	int	tetcopy[4][2];
 	int	lx;
 	int	ly;
+	int	y_incr;
+	int	x_incr;
 
 	ly = max_length(tetromino);
 	lx = 0;
-	tetcopy[0][0] = tetromino[0][0];
-	tetcopy[1][0] = tetromino[1][0];
-	tetcopy[2][0] = tetromino[2][0];
-	tetcopy[3][0] = tetromino[3][0];
-//if (*positions == NULL)
-//	{
-		while (ly < sqr_size)
+	y_incr = 0;
+	while (ly < sqr_size)
+	{
+		x_incr = 0;
+		lx = max_width(tetromino); 
+		while (lx < sqr_size)
 		{
-			tetcopy[0][1] = tetromino[0][1];
-			tetcopy[1][1] = tetromino[1][1];
-			tetcopy[2][1] = tetromino[2][1];
-			tetcopy[3][1] = tetromino[3][1];
-			lx = max_width(tetromino); 
-			while (lx < sqr_size)
-			{
-				append_position(tetcopy, positions);
-				tetcopy[0][1]++;
-				tetcopy[1][1]++;
-				tetcopy[2][1]++;
-				tetcopy[3][1]++;
-				lx++;
-			}
-			tetcopy[0][0]++;
-			tetcopy[1][0]++;
-			tetcopy[2][0]++;
-			tetcopy[3][0]++;
-			ly++;
+			append_position(tetromino, positions, y_incr, x_incr);
+			x_incr++;
+			lx++;
 		}
-//	}
+		y_incr++;
+		ly++;
+	}
+}
+
+void	calculate_last_row(int tetromino[4][2], int sqr_size, int row, t_poslist **positions)
+{
+	int			lx;
+	int			x_incr;
+	
+	x_incr = 0;
+	lx = max_width(tetromino);
+	while (lx < sqr_size)
+	{
+		append_position(tetromino, positions, row, x_incr);
+		x_incr++;
+		lx++;
+	}
+}
+
+void	calculate_new_positions(t_tetlist *tetrominoes, int sqr_size)
+{
+	int			row;
+	int			x_incr;
+	t_poslist	*temp;
+	t_poslist	*temp2;
+
+	while (tetrominoes)
+	{
+		row = 0;
+		temp2 = tetrominoes->positions;
+		while (temp2)
+		{
+			x_incr = 1;
+			while (temp2->next && temp2->next->position[0][0] == row)
+			{
+				temp2 = temp2->next;
+				x_incr++;
+			}
+			temp = temp2->next;
+			temp2->next = create_position(tetrominoes->tetromino, row, x_incr);
+			temp2->next->next = temp;
+			temp2 = temp2->next->next;
+			row++;
+		}
+		calculate_last_row(tetrominoes->tetromino, sqr_size, row, &tetrominoes->positions);
+		tetrominoes = tetrominoes->next;
+	}
 }
 
 void	calculate_positions(t_tetlist *tetrominoes, int sqr_size)

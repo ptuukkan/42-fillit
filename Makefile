@@ -14,7 +14,7 @@ NAME = fillit
 LIB = libft.a
 SRCDIR = srcs
 SRCS = main.c list_functions.c print_error.c print_usage.c read_and_validate.c\
-convert_tetromino.c calculate_positions.c
+convert_tetromino.c calculate_positions.c solve.c
 
 OBJDIR = objects
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
@@ -24,14 +24,16 @@ GCC = gcc -Werror -Wextra -Wall -g
 
 all: $(NAME) $(CHECKER)
 
-$(NAME): $(OBJS) libft/$(LIB)
+$(NAME): $(OBJS) buildlib
 	$(GCC) $(OBJS) -o $(NAME) libft/$(LIB)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INC)/fillit.h
 	@[ -d $(@D) ] || mkdir -p $(@D)
 	$(GCC) -c $< -o $@ -I $(INC) -I libft/$(INC)
 
-libft/$(LIB):
+#libft/$(LIB): buildlib
+
+buildlib:
 	make -C libft/
 
 clean:
@@ -45,4 +47,4 @@ fclean : clean
 
 re: fclean all
 
-.PHONY: clean fclean all
+.PHONY: clean fclean all buildlib

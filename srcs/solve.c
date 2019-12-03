@@ -53,20 +53,18 @@ int		compare_position(t_poslist *positions, t_uplist *used_positions)
 
 int		get_next_position(t_tetlist *tetrominoes, t_uplist **used_positions)
 {
-	if (used_positions == NULL)
-		tetrominoes->positions->selected = 1;
-	else
-	{
-		while (tetrominoes->positions && compare_position(tetrominoes->positions, used_positions))
-			tetrominoes->positions = tetrominoes->positions->next;
-		if (tetrominoes->positions == NULL)
-			return (0);
-		tetrominoes->positions->selected = 1;
-	}
-	add_used_position(tetrominoes->positions->position[0], used_positions);
-	add_used_position(tetrominoes->positions->position[1], used_positions);
-	add_used_position(tetrominoes->positions->position[2], used_positions);
-	add_used_position(tetrominoes->positions->position[3], used_positions);
+	t_poslist	*tmp;
+
+	tmp = tetrominoes->positions;
+	while (tmp && compare_position(tmp, *used_positions))
+		tmp = tmp->next;
+	if (tmp == NULL)
+		return (0);
+	tmp->selected = 1;
+	add_used_position(tmp->position[0], used_positions);
+	add_used_position(tmp->position[1], used_positions);
+	add_used_position(tmp->position[2], used_positions);
+	add_used_position(tmp->position[3], used_positions);
 	return (1);
 }
 
@@ -78,7 +76,7 @@ int		solve(t_tetlist *tetrominoes, t_uplist **used_positions, int sqr_size)
 	{
 		if (solve(tetrominoes->next, used_positions, sqr_size))
 			return (1);
-		remove_last_position(&used_positions, tetrominoes->positions);
+		remove_last_position(used_positions, tetrominoes->positions);
 	}
 	reset_positions(tetrominoes->positions);
 	return (0);

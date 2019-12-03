@@ -33,12 +33,17 @@ void					validate_tetromino(char **array);
 int						read_file(int fd, t_tetlist **tetrominoes);
 void					append_tetromino(char **array, t_tetlist **tetrominoes);
 void					convert_tetromino(char **array, t_tetlist *tetrominoes);
-void					append_position(int tetromino[4][2], t_poslist **positions);
+void					append_position(int tetromino[4][2], t_poslist **positions, int y_incr, int x_incr);
 void					calculate_positions(t_tetlist *tetrominoes, int sqr_size);
 int						get_next_position(t_tetlist *tetrominoes, t_uplist **used_positions);
 void					add_used_position(int xy[2], t_uplist **used_positions);
 void					calculate_new_positions(t_tetlist *tetrominoes, int sqr_size);
-t_poslist				*create_position(int tetromino[4][2]);
+t_poslist				*create_position(int tetromino[4][2], int y_incr, int x_incr);
+void					remove_uplist(t_uplist **used_positions);
+int						solve(t_tetlist *tetrominoes, t_uplist **used_positions, int sqr_size);
+int						max_width(int tetromino[4][2]);
+int						max_length(int tetromino[4][2]);
+
 
 
 #endif

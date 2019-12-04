@@ -19,6 +19,7 @@ unsigned long long	g_ft_memcmp_count = 0;
 unsigned long long	g_add_used_position_count = 0;
 unsigned long long	g_remove_last_position_count = 0;
 unsigned long long	g_reset_positions_count = 0;
+double	time_eliminate = 0.0;
 
 void	print_positions(t_tetlist *tetrominoes)
 {
@@ -150,10 +151,13 @@ int	main(int argc, char **argv)
 
 	printf("%-30s%20llu\n", "Solve count:", g_solve_count);
 	printf("%-30s%20llu\n","Get_next_position count:", g_get_next_position_count);
-	printf("%-30s%20llu\n","Compare_position count:", g_compare_position_count);
-	printf("%-30s%20llu\n","ft_memcmp count:", g_ft_memcmp_count);
+	printf("%-30s%20llu\n","Eliminate_position count:", g_compare_position_count);
+	printf("%-30s%20f\n","Eliminate_position time:", time_eliminate);
 	printf("%-30s%20llu\n","Add_used_position count:", g_add_used_position_count);
 	printf("%-30s%20llu\n","Remove_last_position count:", g_remove_last_position_count);
 	printf("%-30s%20llu\n","Reset_positions count:", g_reset_positions_count);
+
+
+
 	return (0);
 }

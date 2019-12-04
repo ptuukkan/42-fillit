@@ -22,6 +22,7 @@ static t_tetlist	*create_tetromino(char **array)
 		exit_error("List allocation failed");
 	new->positions = NULL;
 	new->next = NULL;
+	new->placed_before = 0;
 	convert_tetromino(array, new);
 	return (new);
 }
@@ -76,22 +77,28 @@ void				append_position(int tetromino[4][2], t_poslist **positions, int y_incr, 
 	temp->next = create_position(tetromino, y_incr, x_incr);
 }
 
-void				add_used_position(int xy[2], t_uplist **used_positions)
+void				add_used_position(int position[4][2], t_uplist **used_positions)
 {
 	t_uplist	*temp;
+	int			i;
 
+	i = 0;
 	g_add_used_position_count++;
-	if (!(temp = (t_uplist *)ft_memalloc(sizeof(t_uplist))))
-		return ;
-	temp->xy[0] = xy[0];
-	temp->xy[1] = xy[1];
-	temp->next = NULL;
-	if (*used_positions == NULL)
-		*used_positions = temp;
-	else
+	while (i < 4)
 	{
-		temp->next = *used_positions;
-		*used_positions = temp;
+		if (!(temp = (t_uplist *)ft_memalloc(sizeof(t_uplist))))
+			exit_error("Used position list allocation failed!!");
+		temp->xy[0] = position[i][0];
+		temp->xy[1] = position[i][1];
+		temp->next = NULL;
+		if (*used_positions == NULL)
+			*used_positions = temp;
+		else
+		{
+			temp->next = *used_positions;
+			*used_positions = temp;
+		}
+		i++;
 	}
 }
 

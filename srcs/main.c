@@ -1,13 +1,31 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: avornane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/25 15:00:53 by avornane          #+#    #+#             */
+/*   Updated: 2019/11/25 15:00:57 by avornane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fillit.h"
+
+unsigned long long	g_solve_count = 0;
+unsigned long long	g_get_next_position_count = 0;
+unsigned long long	g_compare_position_count = 0;
+unsigned long long	g_ft_memcmp_count = 0;
+unsigned long long	g_add_used_position_count = 0;
+unsigned long long	g_remove_last_position_count = 0;
+unsigned long long	g_reset_positions_count = 0;
 
 void	print_positions(t_tetlist *tetrominoes)
 {
 	int	i;
 	t_poslist *tmp;
-	
-	
+
+
 	while (tetrominoes)
 	{
 		tmp = tetrominoes->positions;
@@ -128,7 +146,14 @@ int	main(int argc, char **argv)
 		calculate_new_positions(tetrominoes, sqr_size);
 		remove_uplist(&used_positions);
 	}
-	while(1);
 	print_tetrominoes(tetrominoes, sqr_size);
+
+	printf("%-30s%20llu\n", "Solve count:", g_solve_count);
+	printf("%-30s%20llu\n","Get_next_position count:", g_get_next_position_count);
+	printf("%-30s%20llu\n","Compare_position count:", g_compare_position_count);
+	printf("%-30s%20llu\n","ft_memcmp count:", g_ft_memcmp_count);
+	printf("%-30s%20llu\n","Add_used_position count:", g_add_used_position_count);
+	printf("%-30s%20llu\n","Remove_last_position count:", g_remove_last_position_count);
+	printf("%-30s%20llu\n","Reset_positions count:", g_reset_positions_count);
 	return (0);
 }

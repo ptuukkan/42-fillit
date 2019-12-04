@@ -1,13 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solve.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/04 11:42:31 by ptuukkan          #+#    #+#             */
+/*   Updated: 2019/12/04 11:42:33 by ptuukkan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
-/*
+extern unsigned long long	g_solve_count;
+extern unsigned long long	g_get_next_position_count;
+extern unsigned long long	g_compare_position_count;
+extern unsigned long long	g_remove_last_position_count;
+extern unsigned long long	g_reset_positions_count;
 
-*/
 void	remove_last_position(t_uplist **used_positions, t_poslist *positions)
 {
 	int			i;
 	t_uplist	*tmp;
 
+	g_remove_last_position_count++;
 	i = 0;
 	while (i < 4)
 	{
@@ -25,6 +41,7 @@ void	remove_last_position(t_uplist **used_positions, t_poslist *positions)
 
 void	reset_positions(t_poslist *positions)
 {
+	g_reset_positions_count++;
 	while (positions)
 	{
 		positions->usable = 1;
@@ -34,6 +51,7 @@ void	reset_positions(t_poslist *positions)
 
 int		compare_position(t_poslist *positions, t_uplist *used_positions)
 {
+	g_compare_position_count++;
 	if (positions->usable == 0)
 		return (1);
 	while (used_positions)
@@ -55,6 +73,7 @@ int		get_next_position(t_tetlist *tetrominoes, t_uplist **used_positions)
 {
 	t_poslist	*tmp;
 
+	g_get_next_position_count++;
 	tmp = tetrominoes->positions;
 	while (tmp && compare_position(tmp, *used_positions))
 		tmp = tmp->next;
@@ -70,6 +89,7 @@ int		get_next_position(t_tetlist *tetrominoes, t_uplist **used_positions)
 
 int		solve(t_tetlist *tetrominoes, t_uplist **used_positions, int sqr_size)
 {
+	g_solve_count++;
 	if (tetrominoes == NULL)
 		return (1);
 	while (get_next_position(tetrominoes, used_positions))

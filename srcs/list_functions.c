@@ -1,4 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_functions.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: avornane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/25 15:00:53 by avornane          #+#    #+#             */
+/*   Updated: 2019/11/25 15:00:57 by avornane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
+
+extern unsigned long long	g_add_used_position_count;
 
 static t_tetlist	*create_tetromino(char **array)
 {
@@ -66,6 +80,7 @@ void				add_used_position(int xy[2], t_uplist **used_positions)
 {
 	t_uplist	*temp;
 
+	g_add_used_position_count++;
 	if (!(temp = (t_uplist *)ft_memalloc(sizeof(t_uplist))))
 		return ;
 	temp->xy[0] = xy[0];

@@ -21,10 +21,10 @@ static int	empty_rows(char **array)
 	while (array[y] != NULL)
 	{
 		x = 0;
-		while(array[y][x] != '\0')
+		while (array[y][x] != '\0')
 		{
 			if (array[y][x] == '#')
-				return(y);
+				return (y);
 			x++;
 		}
 		y++;
@@ -41,10 +41,10 @@ static int	empty_columns(char **array)
 	y = 0;
 	while (array[y][x] != '\0')
 	{
-		while(array[y] != NULL)
+		while (array[y] != NULL)
 		{
 			if (array[y][x] == '#')
-				return(x);
+				return (x);
 			y++;
 		}
 		y = 0;
@@ -53,7 +53,7 @@ static int	empty_columns(char **array)
 	return (0);
 }
 
-void	convert_tetromino(char **array, t_tetlist *tetrominoes)
+void		convert_tetromino(char **array, t_tetlist *tetrominoes)
 {
 	int y;
 	int x;

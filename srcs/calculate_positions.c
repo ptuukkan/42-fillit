@@ -12,39 +12,8 @@
 
 #include "fillit.h"
 
-int		max_width(int tetromino[4][2])
-{
-	int	m;
-	int	i;
-
-	i = 1;
-	m = tetromino[0][1];
-	while (i < 4)
-	{
-		if (tetromino[i][1] > m)
-			m = tetromino[i][1];
-		i++;
-	}
-	return (m);
-}
-
-int		max_length(int tetromino[4][2])
-{
-	int	m;
-	int	i;
-
-	i = 1;
-	m = tetromino[1][0];
-	while (i < 4)
-	{
-		if (tetromino[i][0] > m)
-			m = tetromino[i][0];
-		i++;
-	}
-	return (m);
-}
-
-void	fill_positions(int tetromino[4][2], t_poslist **positions, int sqr_size)
+static void	fill_positions(int tetromino[4][2], t_poslist **positions,
+			int sqr_size)
 {
 	int	lx;
 	int	ly;
@@ -57,7 +26,7 @@ void	fill_positions(int tetromino[4][2], t_poslist **positions, int sqr_size)
 	while (ly < sqr_size)
 	{
 		x_incr = 0;
-		lx = max_width(tetromino); 
+		lx = max_width(tetromino);
 		while (lx < sqr_size)
 		{
 			append_position(tetromino, positions, y_incr, x_incr);
@@ -69,11 +38,12 @@ void	fill_positions(int tetromino[4][2], t_poslist **positions, int sqr_size)
 	}
 }
 
-void	calculate_last_row(int tetromino[4][2], int sqr_size, int row, t_poslist **positions)
+static void	calculate_last_row(int tetromino[4][2], int sqr_size, int row,\
+		t_poslist **positions)
 {
 	int			lx;
 	int			x_incr;
-	
+
 	x_incr = 0;
 	lx = max_width(tetromino);
 	while (lx < sqr_size)
@@ -84,7 +54,7 @@ void	calculate_last_row(int tetromino[4][2], int sqr_size, int row, t_poslist **
 	}
 }
 
-void	calculate_new_positions(t_tetlist *tetrominoes, int sqr_size)
+void		calculate_new_positions(t_tetlist *tetrominoes, int sqr_size)
 {
 	int			row;
 	int			x_incr;
@@ -109,12 +79,13 @@ void	calculate_new_positions(t_tetlist *tetrominoes, int sqr_size)
 			temp2 = temp2->next->next;
 			row++;
 		}
-		calculate_last_row(tetrominoes->tetromino, sqr_size, row, &tetrominoes->positions);
+		calculate_last_row(tetrominoes->tetromino, sqr_size, row,\
+		&tetrominoes->positions);
 		tetrominoes = tetrominoes->next;
 	}
 }
 
-void	calculate_positions(t_tetlist *tetrominoes, int sqr_size)
+void		calculate_positions(t_tetlist *tetrominoes, int sqr_size)
 {
 	t_tetlist	*temp;
 

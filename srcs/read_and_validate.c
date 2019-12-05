@@ -10,17 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "fillit.h"
-
-
 
 /*
 ** Counts neighbor blocks for each block.
 ** Valid tetromino contains 6 or 8 neighbors.
 */
 
-int		count_neighbours(char **array, int x,int y)
+static int	count_neighbours(char **array, int x, int y)
 {
 	int result;
 
@@ -41,7 +38,7 @@ int		count_neighbours(char **array, int x,int y)
 ** has four lines and contains only 4 blocks.
 */
 
-void	validate_tetromino(char **array)
+static void	validate_tetromino(char **array)
 {
 	int	y;
 	int	x;
@@ -67,34 +64,10 @@ void	validate_tetromino(char **array)
 		}
 		if (x != 4)
 			exit_error("Too many characters in line");
-	y++;
+		y++;
 	}
 	if (t != 4 || y != 4 || tet < 6)
 		exit_error("Too many lines, too many blocks, too few buddies");
-}
-
-/*
-** Room for 5 string in array. 4 strings for tetromino.
-** One for null string.
-*/
-
-char	**init_array(void)
-{
-	char	**array;
-
-	if (!(array = (char **)ft_memalloc(sizeof(char *) * 5)))
-		exit_error("Array allocation failed!");
-	return (array);
-}
-
-void	del_array(char **array)
-{
-	while (*array)
-	{
-		ft_strdel(array);
-		array++;
-	}
-	array = NULL;
 }
 
 /*
@@ -103,7 +76,7 @@ void	del_array(char **array)
 ** Returns number of lines read.
 */
 
-int		read_tetromino(int fd, char **array)
+static int	read_tetromino(int fd, char **array)
 {
 	char	*line;
 	int		i;
@@ -140,7 +113,7 @@ int		read_tetromino(int fd, char **array)
 ** Number of lines read must be tetromino count * 5 - 1.
 */
 
-int		read_file(int fd, t_tetlist **tetrominoes)
+int			read_file(int fd, t_tetlist **tetrominoes)
 {
 	char	**array;
 	int		tet_count;
@@ -156,6 +129,7 @@ int		read_file(int fd, t_tetlist **tetrominoes)
 		validate_tetromino(array);
 		append_tetromino(array, tetrominoes);
 		del_array(array);
+		free(array);
 		array = init_array();
 		tet_count++;
 		lines_read += ret;

@@ -104,5 +104,4 @@ t_list				*ft_lstchr(t_list *lst, int c);
 int					get_next_line(const int fd, char **line);
 int					ft_max(int a, int b);
 
-
 #endif

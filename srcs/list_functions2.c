@@ -17,7 +17,7 @@ t_poslist	*create_position(int tetromino[4][2], int y_incr, int x_incr)
 	t_poslist	*new;
 
 	if (!(new = (t_poslist *)ft_memalloc(sizeof(t_poslist))))
-		exit_error("List allocation failed");
+		exit_error();
 	new->position[0][0] = tetromino[0][0] + y_incr;
 	new->position[0][1] = tetromino[0][1] + x_incr;
 	new->position[1][0] = tetromino[1][0] + y_incr;
@@ -57,7 +57,7 @@ void		add_used_position(int position[4][2], t_uplist **used_positions)
 	while (i < 4)
 	{
 		if (!(temp = (t_uplist *)ft_memalloc(sizeof(t_uplist))))
-			exit_error("Used position list allocation failed!!");
+			exit_error();
 		temp->xy[0] = position[i][0];
 		temp->xy[1] = position[i][1];
 		temp->next = NULL;

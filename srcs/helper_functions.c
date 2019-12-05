@@ -22,7 +22,7 @@ char	**init_array(void)
 	char	**array;
 
 	if (!(array = (char **)ft_memalloc(sizeof(char *) * 5)))
-		exit_error("Array allocation failed!");
+		exit_error();
 	return (array);
 }
 

@@ -54,7 +54,7 @@ static void	validate_tetromino(char **array)
 		while (array[y][x] != '\0')
 		{
 			if (array[y][x] != '.' && array[y][x] != '#')
-				exit_error("Not valid character");
+				exit_error();
 			if (array[y][x] == '#')
 			{
 				t++;
@@ -63,11 +63,11 @@ static void	validate_tetromino(char **array)
 			x++;
 		}
 		if (x != 4)
-			exit_error("Too many characters in line");
+			exit_error();
 		y++;
 	}
 	if (t != 4 || y != 4 || tet < 6)
-		exit_error("Too many lines, too many blocks, too few buddies");
+		exit_error();
 }
 
 /*
@@ -88,7 +88,7 @@ static int	read_tetromino(int fd, char **array)
 		if (i == 4)
 		{
 			if (*line != '\0')
-				exit_error("Line not null!");
+				exit_error();
 			if (line)
 				ft_strdel(&line);
 		}
@@ -135,8 +135,8 @@ int			read_file(int fd, t_tetlist **tetrominoes)
 		lines_read += ret;
 	}
 	if (tet_count < 1 || tet_count > 26)
-		exit_error("too many or zero tetrominoes");
+		exit_error();
 	if (lines_read != (tet_count * 5 - 1))
-		exit_error("incorrect number of lines read");
+		exit_error();
 	return (tet_count);
 }

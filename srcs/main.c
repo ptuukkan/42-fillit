@@ -48,7 +48,7 @@ int		main(int argc, char **argv)
 	if (argc != 2)
 		return (print_usage());
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		exit_error("File open failed!");
+		exit_error();
 	tetrominoes = NULL;
 	tet_count = read_file(fd, &tetrominoes);
 	sqr_size = calc_min_sqrsize(tet_count, tetrominoes);

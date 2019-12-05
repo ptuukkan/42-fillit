@@ -18,11 +18,11 @@ static char		**init_map(char **map, int sqr_size)
 
 	i = 0;
 	if (!(map = (char**)ft_memalloc(sizeof(char*) * sqr_size + 1)))
-		exit_error("map init failed!");
+		exit_error();
 	while (i < sqr_size)
 	{
 		if (!(map[i] = ft_strnew(sqr_size)))
-			exit_error("Map row allocation failed!");
+			exit_error();
 		ft_memset(map[i], '.', sqr_size);
 		i++;
 	}
@@ -39,16 +39,15 @@ static void		print_map(char **map)
 	}
 }
 
-int		print_usage(void)
+int			print_usage(void)
 {
 	write(1, "usage\n", 6);
 	return (1);
 }
 
-void		exit_error(char *str)
+void		exit_error(void)
 {
 	write(1, "error\n", 6);
-	ft_putendl(str);
 	exit(-1);
 }
 

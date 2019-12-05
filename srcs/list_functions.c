@@ -17,7 +17,7 @@ static t_tetlist	*create_tetromino(char **array)
 	t_tetlist	*new;
 
 	if (!(new = (t_tetlist *)ft_memalloc(sizeof(t_tetlist))))
-		exit_error("List allocation failed");
+		exit_error();
 	new->positions = NULL;
 	new->next = NULL;
 	new->placed_before = 0;

@@ -68,11 +68,9 @@ void		calculate_new_positions(t_tetlist *tetrominoes, int sqr_size)
 		while (temp2)
 		{
 			x_incr = 1;
-			while (temp2->next && temp2->next->position[0][0] == row)
-			{
+			while (temp2->next && temp2->next->position[0][0] == row &&
+					x_incr++)
 				temp2 = temp2->next;
-				x_incr++;
-			}
 			temp = temp2->next;
 			temp2->next = create_position(tetrominoes->tetromino, row, x_incr);
 			temp2->next->next = temp;

@@ -62,12 +62,9 @@ static void	validate_tetromino(char **array)
 			}
 			x++;
 		}
-		if (x != 4)
-			exit_error();
-		y++;
+		(x != 4) ? exit_error() : y++;
 	}
-	if (t != 4 || y != 4 || tet < 6)
-		exit_error();
+	(t != 4 || y != 4 || tet < 6) ? exit_error() : tet++;
 }
 
 /*

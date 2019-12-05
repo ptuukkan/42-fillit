@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-static char		**init_map(char **map, int sqr_size)
+static char	**init_map(char **map, int sqr_size)
 {
 	int i;
 
@@ -30,7 +30,7 @@ static char		**init_map(char **map, int sqr_size)
 	return (map);
 }
 
-static void		print_map(char **map)
+static void	print_map(char **map)
 {
 	while (*map)
 	{
@@ -65,14 +65,10 @@ void		print_tetrominoes(t_tetlist *tetrominoes, int sqr_size)
 		tmp = tetrominoes->positions;
 		while (tmp->selected == 0)
 			tmp = tmp->next;
-		map[tmp->position[0][0]]\
-		[tmp->position[0][1]] = c;
-		map[tmp->position[1][0]]\
-		[tmp->position[1][1]] = c;
-		map[tmp->position[2][0]]\
-		[tmp->position[2][1]] = c;
-		map[tmp->position[3][0]]\
-		[tmp->position[3][1]] = c;
+		map[tmp->position[0][0]][tmp->position[0][1]] = c;
+		map[tmp->position[1][0]][tmp->position[1][1]] = c;
+		map[tmp->position[2][0]][tmp->position[2][1]] = c;
+		map[tmp->position[3][0]][tmp->position[3][1]] = c;
 		c++;
 		tetrominoes = tetrominoes->next;
 	}

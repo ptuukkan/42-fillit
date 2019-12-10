@@ -40,7 +40,8 @@ typedef struct			s_uplist
 
 int						print_usage(void);
 void					exit_error(void);
-int						read_file(int fd, t_tetlist **tetrominoes);
+int						read_file(int fd, char *filename,
+						t_tetlist **tetrominoes);
 void					append_tetromino(char **array,
 						t_tetlist **tetrominoes);
 void					convert_tetromino(char **array,

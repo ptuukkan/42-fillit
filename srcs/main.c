@@ -50,7 +50,7 @@ int		main(int argc, char **argv)
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		exit_error();
 	tetrominoes = NULL;
-	tet_count = read_file(fd, &tetrominoes);
+	tet_count = read_file(fd, argv[1], &tetrominoes);
 	sqr_size = calc_min_sqrsize(tet_count, tetrominoes);
 	calculate_positions(tetrominoes, sqr_size);
 	used_positions = NULL;
@@ -61,6 +61,5 @@ int		main(int argc, char **argv)
 		remove_uplist(&used_positions);
 	}
 	print_tetrominoes(tetrominoes, sqr_size);
-	close(fd);
 	return (0);
 }

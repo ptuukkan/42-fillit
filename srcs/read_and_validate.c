@@ -103,6 +103,34 @@ static int	read_tetromino(int fd, char **array)
 }
 
 /*
+** Checks that number of bytes read from the file corresponds to the
+** number of valid tetrominos.
+*/
+
+static int	check_filebytes(char *filename, int tet_count)
+{
+	int		fd;
+	int		ret;
+	int		totalret;
+	char	buf[1024 + 1];
+
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (1);
+	if (read(fd, buf, 0) == -1)
+		return (1);
+	totalret = 0;
+	while ((ret = read(fd, buf, 1024)) > 0)
+		totalret += ret;
+	close(fd);
+	if (tet_count == 1 && totalret != 20)
+		return (1);
+	else if (totalret != (tet_count * 20 + (tet_count - 1)))
+		return (1);
+	return (0);
+}
+
+/*
 ** Loops the read_tetromino function until lines read is 0 == EOF.
 ** Initializes fresh 2d array for each tetromino.
 ** Counts tetrominoes and total number of lines read.
@@ -110,7 +138,7 @@ static int	read_tetromino(int fd, char **array)
 ** Number of lines read must be tetromino count * 5 - 1.
 */
 
-int			read_file(int fd, t_tetlist **tetrominoes)
+int			read_file(int fd, char *filename, t_tetlist **tetrominoes)
 {
 	char	**array;
 	int		tet_count;
@@ -131,9 +159,9 @@ int			read_file(int fd, t_tetlist **tetrominoes)
 		tet_count++;
 		lines_read += ret;
 	}
-	if (tet_count < 1 || tet_count > 26)
-		exit_error();
-	if (lines_read != (tet_count * 5 - 1))
+	close(fd);
+	if (tet_count < 1 || tet_count > 26 || lines_read != (tet_count * 5 - 1) ||
+		check_filebytes(filename, tet_count))
 		exit_error();
 	return (tet_count);
 }

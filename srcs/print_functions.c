@@ -41,7 +41,7 @@ static void	print_map(char **map)
 
 int			print_usage(void)
 {
-	write(1, "usage\n", 6);
+	ft_putendl("usage: fillit input_file");
 	return (1);
 }
 

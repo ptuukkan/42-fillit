@@ -6,7 +6,7 @@
 /*   By: avornane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 12:53:55 by avornane          #+#    #+#             */
-/*   Updated: 2019/12/05 12:54:02 by avornane         ###   ########.fr       */
+/*   Updated: 2019/12/11 12:52:49 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct			s_poslist
 typedef struct			s_tetlist
 {
 	int					tetromino[4][2];
-	int					placed_before;
 	struct s_poslist	*positions;
 	struct s_tetlist	*next;
 }						t_tetlist;

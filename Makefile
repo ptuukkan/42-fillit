@@ -6,7 +6,7 @@
 #    By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 12:36:17 by ptuukkan          #+#    #+#              #
-#    Updated: 2019/11/06 09:36:48 by ptuukkan         ###   ########.fr        #
+#    Updated: 2019/12/11 12:52:39 by ptuukkan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJDIR = objects
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 INC = includes/
 
-GCC = gcc -Werror -Wextra -Wall -g
+GCC = gcc -Werror -Wextra -Wall
 
 all: $(NAME) $(CHECKER)
 

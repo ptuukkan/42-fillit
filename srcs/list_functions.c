@@ -6,7 +6,7 @@
 /*   By: avornane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 15:00:53 by avornane          #+#    #+#             */
-/*   Updated: 2019/11/25 15:00:57 by avornane         ###   ########.fr       */
+/*   Updated: 2019/12/11 12:53:02 by ptuukkan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static t_tetlist	*create_tetromino(char **array)
 		exit_error();
 	new->positions = NULL;
 	new->next = NULL;
-	new->placed_before = 0;
 	convert_tetromino(array, new);
 	return (new);
 }

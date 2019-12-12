@@ -6,7 +6,7 @@
 #    By: ptuukkan <ptuukkan@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 12:36:17 by ptuukkan          #+#    #+#              #
-#    Updated: 2019/12/11 12:52:39 by ptuukkan         ###   ########.fr        #
+#    Updated: 2019/12/12 13:25:52 by ptuukkan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ INC = includes/
 
 GCC = gcc -Werror -Wextra -Wall
 
-all: $(NAME) $(CHECKER)
+all: $(NAME)
 
 $(NAME): $(OBJS) buildlib
 	$(GCC) $(OBJS) -o $(NAME) libft/$(LIB)

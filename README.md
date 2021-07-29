@@ -12,4 +12,5 @@ We solved this problem with the use of linked lists. We read the pieces from the
 3. If not successful, increase the square size by 1.
 4. For each piece add new possible positions and go to step 2.
 
-![img](images/img1.png)
+![img1](images/img1.PNG)
+![img2](images/img2.PNG)
